@@ -9,5 +9,7 @@
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.19"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "yarn playwright test"
+  }
 }
