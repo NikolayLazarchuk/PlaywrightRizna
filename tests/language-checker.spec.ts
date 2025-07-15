@@ -16,7 +16,7 @@ test("Checking for page language changes", async ({ page }) => {
     await expect(
       page.locator("p", {
         hasText:
-          "Nous sommes une agence spécialisée dans le développement de logiciels : applications mobiles et sites web. Nous construisons des solutions évolutives avec une forte expertise sur l'environnement JavaScript et AWS.",
+          "Nous sommes une agence spécialisée dans le développement de logiciels : applications mobiles, plateformes commerciales et sites web.",
       })
     ).toBeVisible();
   });
@@ -28,12 +28,12 @@ test("Checking for page language changes", async ({ page }) => {
       .click();
     await expect(page).toHaveURL(/.*\/en\/?$/);
     await expect(page.locator("h1")).toHaveText(
-      /We\s+create\s+digital\s+transformations\s+with\s+code\./
+      /We\s+create\s+digital\s+solutions\s+with\s+code\./
     );
     await expect(
       page.locator("p", {
         hasText:
-          "We're a leading agency specializing in software development: mobile applications and websites. We build scalable solutions with a strong expertise on JavaScript environment and AWS.",
+          "We're a leading agency specializing in software development: mobile applications, business platforms and websites.",
       })
     ).toBeVisible();
   });
@@ -45,12 +45,12 @@ test("Checking for page language changes", async ({ page }) => {
       .click();
     await expect(page).toHaveURL(/.*\/ua\/?$/);
     await expect(page.locator("h1")).toHaveText(
-      /Ми\s+втілюємо\s+цифрові\s+трансформації\s+через\s+код\./
+      /Втілюємо\s+цифрові\s+рішення\s+з\s+кодом\./
     );
     await expect(
       page.locator("p", {
         hasText:
-          "Ми - провідна агенція, що спеціалізується на розробці програмного забезпечення: мобільних додатків та веб-сайтів. Ми створюємо масштабовані рішення з експертизою в середовищі JavaScript та AWS.",
+          "Ми - провідна агенція, що спеціалізується на розробці програмного забезпечення: мобільних додатків, бізнес-платформ та веб-сайтів.",
       })
     ).toBeVisible();
   });
@@ -67,7 +67,7 @@ test("Checking for page language changes", async ({ page }) => {
     await expect(
       page.locator("p", {
         hasText:
-          "Nous sommes une agence spécialisée dans le développement de logiciels : applications mobiles et sites web. Nous construisons des solutions évolutives avec une forte expertise sur l'environnement JavaScript et AWS.",
+          "Nous sommes une agence spécialisée dans le développement de logiciels : applications mobiles, plateformes commerciales et sites web.",
       })
     ).toBeVisible();
   });
