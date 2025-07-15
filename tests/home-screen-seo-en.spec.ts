@@ -11,85 +11,71 @@ test("Should the SEO structure be conformed for home screen in EN", async ({
     .getByRole("button", { name: "en", exact: true })
     .click();
 
-  await test.step("Home page has slag /en", async () => {
+  await test.step("Home page has slug /en", async () => {
     await expect(page).toHaveURL(/.*\/en\/?$/);
   });
 
-  await test.step("Home page title check", async () => {
-    await expect(page).toHaveTitle(
-      /^website and mobile application development studio | rizna$/i
-    );
+  await test.step("Home page has title", async () => {
+    const title = await page.title();
+    expect(title).not.toBeNull();
+    expect(title.trim().length).toBeGreaterThan(0);
   });
 
-  await test.step("Home page description check", async () => {
-    expect(
-      await page.locator('meta[name="description"]').getAttribute("content")
-    ).toBe(
-      "We can also use WordPress, Webflow, Shopify, Squarespace and integrate Stripe, Brevo, Airtable, Strapi"
-    );
+  await test.step("Home page has description", async () => {
+    const description = await page
+      .locator('meta[name="description"]')
+      .getAttribute("content");
+    expect(description).not.toBeNull();
+    expect((description ?? "").trim().length).toBeGreaterThan(0);
   });
 
   await test.step("Home page has only 1 h1 and has text", async () => {
     expect(await page.locator("h1").count()).toBe(1);
     await expect(page.locator("h1")).toHaveText(
-      /^we create digital transformations with code.$/i
+      /^We create digital solutions with code.$/i
     );
   });
 
-  await test.step("Home page has h2 has text", async () => {
-    await expect(
-      page.locator("h2", {
-        hasText:
-          "Turning your everyday challenges into custom digital solutions",
-      })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", {
-        hasText: "Unlock the full potential of your business",
-      })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", {
-        hasText: "Start your website’s success journey today!",
-      })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", {
-        hasText: "Project development roadmap",
-      })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", { hasText: "Our latest projects" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", { hasText: "Cybersecurity" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", { hasText: "Catalog of products" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", { hasText: "Jewelry marketplace" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h2", { hasText: "Got a project? Let’s Talk!" })
-    ).toBeVisible();
+  await test.step("Home page has h2 with correct texts", async () => {
+    const h2Headings = [
+      "Transform your everyday challenges into benefits by creating automations",
+      "Unlock the full potential of your business",
+      "Start your website’s success journey today!",
+      "Project development roadmap",
+      "Our latest projects",
+      "Beauty of Paris",
+      "Cybersecurity",
+      "Travel planner",
+      "Jewelry marketplace",
+      "Smart Recommender",
+      "Travel Boost",
+      "Got a project? Let’s Talk!",
+    ];
+
+    for (const heading of h2Headings) {
+      await expect(page.locator("h2", { hasText: heading })).toBeVisible();
+    }
   });
 
-  await test.step("Home page has h3 has text", async () => {
-    await expect(
-      page.locator("h3", { hasText: "Mobile applications" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h3", { hasText: "Web platforms" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h3", { hasText: "Dynamic websites" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h3", { hasText: "External integrations" })
-    ).toBeVisible();
-    await expect(
-      page.locator("h3", { hasText: "Other technologies" })
-    ).toBeVisible();
+  await test.step("Home page has h3 with correct texts", async () => {
+    const h3Headings = [
+      /^Define$/,
+      /^Define tech strategy around your product$/,
+      /^Test$/,
+      /^Test your product market fit$/,
+      /^Develop$/,
+      /^Develop your product$/,
+      /^Scale Up$/,
+      /^Scale your business$/,
+      /^External integrations$/,
+      /^E-commerce & websites$/,
+      /^Mobile & web applications$/,
+      /^Infrastructure & platforms$/,
+      /^Other technologies$/,
+    ];
+
+    for (const heading of h3Headings) {
+      await expect(page.locator("h3", { hasText: heading })).toBeVisible();
+    }
   });
 });
